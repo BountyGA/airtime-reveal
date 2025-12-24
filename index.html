@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+
+  <input id="receiver" placeholder="Receiver Number"><br>
+  <input id="sender" placeholder="Sender Name/Number"><br>
+  <input id="amount" placeholder="Airtime Amount"><br>
+
+  <button onclick="store()">Save Reveal</button>
+  <button onclick="lookup()">Check Who Sent Airtime</button>
+
+<script type="module" src="app.js"></script>
+<script>
+  import { saveReveal, checkAirtime } from "./app.js";
+
+  async function store() {
+    const data = {
+      receiver: document.getElementById("receiver").value,
+      sender: document.getElementById("sender").value,
+      amount: document.getElementById("amount").value,
+      date: new Date().toISOString()
+    };
+    await saveReveal(data);
+  }
+
+  async function lookup() {
+    const num = document.getElementById("receiver").value;
+    const res = await checkAirtime(num);
+    console.log(res);
+  }
+</script>
+
+</body>
+</html>
 
